@@ -14,9 +14,4 @@ public class SpringbootDemo4Application {
 		SpringApplication.run(SpringbootDemo4Application.class, args);
 	}
 
-	@RequestMapping("/")
-	public String Hello(){
-		return "Hello, Spring Boot...";
-	}
-
 }

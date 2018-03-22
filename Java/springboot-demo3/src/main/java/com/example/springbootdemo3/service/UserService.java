@@ -26,4 +26,9 @@ public class UserService {
     public Users addUser(String userName,String password,int enabled){
         return userMapper.addUser(userName, password, enabled);
     }
+
+    @Transactional
+    public Users insert(String userName,String password,int enabled){
+        return userMapper.insert(userName, password, enabled);
+    }
 }

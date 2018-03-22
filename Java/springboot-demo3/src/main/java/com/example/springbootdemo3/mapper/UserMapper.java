@@ -17,6 +17,9 @@ public interface UserMapper {
 
 
     @Select(value = "insert into users(userName,password,enabled) values(#{userName},#{password},#{enabled})")
-    Users addUser(@Param("userName") String id, @Param("password") String age, @Param("enabled") int name);
+    Users addUser(@Param("userName") String userName, @Param("password") String password, @Param("enabled") int enabled);
 
+
+    @Insert("INSERT INTO users(userName,password,enabled) VALUES (#{userName},#{password},#{enabled})")
+    Users insert(@Param("userName") String userName, @Param("password") String password, @Param("enabled") int enabled);
 }

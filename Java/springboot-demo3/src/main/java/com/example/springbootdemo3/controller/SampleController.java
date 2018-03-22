@@ -50,11 +50,19 @@ public class SampleController {
         u.setEnabled(enabled);
         u.setPassword(password);
         u.setUserName(userName);
-
         userService.addUser(userName, password, enabled);
         System.out.println(u.toString());
         return u;
     }
 
+    @RequestMapping("/insert")
+    public Users insert(@RequestParam("userName") String userName, @RequestParam("password") String password, @RequestParam("enabled") int enabled) {
+        Users u1 = new Users();
+        u1.setEnabled(enabled);
+        u1.setPassword(password);
+        u1.setUserName(userName);
+        userService.insert(userName, password, enabled);
+        return u1;
+    }
 
 }

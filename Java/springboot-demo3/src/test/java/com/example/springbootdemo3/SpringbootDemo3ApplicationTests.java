@@ -1,16 +1,50 @@
 package com.example.springbootdemo3;
 
+import com.configuration.BlogProperties;
+import com.example.springbootdemo3.controller.HelloController;
+import com.example.springbootdemo3.controller.TestBootController;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringbootDemo3ApplicationTests {
 
-	@Test
-	public void contextLoads() {
+	private MockMvc mvc;
+
+	@Before
+	public void setUp() throws Exception {
+		mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
 	}
 
+	@Before
+	public void setUp1() throws Exception {
+		mvc = MockMvcBuilders.standaloneSetup(new TestBootController()).build();
+	}
+
+
+	@Test
+	public void getHello() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/testboot/getuser").accept(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andDo(MockMvcResultHandlers.print())
+				.andReturn();
+	}
+
+
 }
+
+
+
+

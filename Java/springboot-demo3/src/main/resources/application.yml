@@ -5,8 +5,12 @@ spring:
 
 #公共配置与profiles选择无关
 mybatis:
-  typeAliasesPackage: com.aim.demo.dao.entity
   mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.example.springbootdemo3.domain
+  type-handlers-package: springboot.mybatis.typehandler
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
 
 ---
 
@@ -15,7 +19,7 @@ spring:
   profiles: dev
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/mytest?useSSL=true&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
