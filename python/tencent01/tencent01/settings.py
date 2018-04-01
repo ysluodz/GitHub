@@ -18,6 +18,11 @@ NEWSPIDER_MODULE = 'tencent01.spiders'
 ITEM_PIPELINES={
     'tencent01.pipelines.TencentPipeline': 300
 }
+#连接数据库的信息，存到mydb的articles数据集中
+MONGODB_HOST='127.0.0.1'
+MONGODB_PORT=27017
+MONGODB_DBNAME='mydb'
+MONGODB_DOCNAME='mytable'
 
 DOWNLOAD_DELAY = 2
 RANDOMIZE_DOWNLOAD_DELAY = True
