@@ -26,19 +26,19 @@ class WangyiyunSpider(scrapy.Spider):
     def start_requests(self):
         for gid in self.group_ids:
             for initial in self.initials:
-                url = 'http://music.163.com/discover/artist/cat?id={gid}&initial={initial}'.format(gid=gid, initial=initial)
-                yield scrapy.Request(url=url, headers=self.headers, method='GET', callback=self.parse)
+                # url = 'http://music.163.com/discover/artist/cat?id={gid}&initial={initial}'.format(gid=gid, initial=initial)
+                # yield scrapy.Request(url=url, headers=self.headers, method='GET', callback=self.parse)
 
 
 
                 # url = 'http://music.163.com/artist/album?id=6452&limit=3&offset=0'
-                # url2 = 'http://music.163.com/artist/album?id=6452&limit=100&offset=0'  # 周杰伦
+                url2 = 'http://music.163.com/artist/album?id=3691&limit=100&offset=0'  #
                 # url3 = 'http://music.163.com/album?id=34720827'
                 # url4 = 'http://music.163.com/song?id=29947420'  # fade
                 # # yield scrapy.Request(url=url, headers=self.headers, method='GET', callback=self.parse)
-                # yield scrapy.Request(url=url2, headers=self.headers, method='GET', callback=self.parse_album)
+                yield scrapy.Request(url=url2, headers=self.headers, method='GET', callback=self.parse_album)
                 # yield scrapy.Request(url=url4, headers=self.headers, method='GET', callback=self.parse_song)
-                # # request = scrapy.Request(url=url3, headers=self.headers, method='GET', callback=self.parse_album_song)
+                # request = scrapy.Request(url=url3, headers=self.headers, method='GET', callback=self.parse_album_song)
 
 
     # 歌手 1
@@ -49,6 +49,7 @@ class WangyiyunSpider(scrapy.Spider):
             artist_name = li.xpath('//a[@class="nm nm-icn f-thide s-fc0"]/text()')[0]
             post_url = li.xpath('//a[@class="nm nm-icn f-thide s-fc0"]/@href')[0]   # li <a href=" /artist?id=1876" class="nm nm-icn f-thide s-fc0" title="阿杜的音乐">阿杜</a>
 
+            print '歌手 1----------------歌手:', artist_name
             item = WangyiyunArtistItem()
             p_url = post_url.lstrip()  # 去首尾空格 /artist?id=1876
             album_url = p_url.split('?')   # /artist,id=1876
@@ -80,7 +81,7 @@ class WangyiyunSpider(scrapy.Spider):
             item['album_name'] = album_name
             item['each_album_url'] = 'http://music.163.com' + p_url
 
-            print item['album_id'],album_name,item['each_album_url']
+            print '专辑名：', album_name, item['each_album_url']
 
             yield item
 

@@ -26,18 +26,18 @@ class WangyiyunPipeline(object):
         self.Comment = self.db[settings['MONGODB_COL_COMMENT']]
 
         # self.Artist.remove()
-        # self.AlbumList.remove()
+        self.AlbumList.remove()
         # self.Song.remove()
         # self.Comment.remove()
     # 存入mongodb中
     def process_item(self, item, spider):
 
-        if isinstance(item, WangyiyunArtistItem):
-        #     # text = json.dumps(dict(item), ensure_ascii=False) + ",\n"
-        #     # self.filename.write(text.encode("utf-8"))
-            artist_info = dict(item)
-            self.Artist.insert(artist_info)
-            return item
+        # if isinstance(item, WangyiyunArtistItem):
+        # #     # text = json.dumps(dict(item), ensure_ascii=False) + ",\n"
+        # #     # self.filename.write(text.encode("utf-8"))
+        #     artist_info = dict(item)
+        #     self.Artist.insert(artist_info)
+        #     return item
 
         if isinstance(item, WangyiyunAlbumListItem):
             artist_info = dict(item)
